@@ -8,14 +8,17 @@
         }
         
         public static function load_view($topPage, $view) {
+            
             $topPage = VIEW_PATH_INC . $topPage;
+
             if ((file_exists($topPage)) && (file_exists($view))) {
                 require_once ($topPage);
                 require_once (VIEW_PATH_INC . 'header.html');
                 require_once ($view);
                 require_once (VIEW_PATH_INC . 'footer.html');
             }else {
-                self::load_error();
+                
+                // self::load_error();
             }
         }
 
