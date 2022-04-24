@@ -34,7 +34,6 @@
             try {
                 call_user_func(array($this -> loadModule(), $this -> loadFunction()));
             }catch(Exception $e) {
-                return "aaaa";
                 common::load_error();
             }
         }

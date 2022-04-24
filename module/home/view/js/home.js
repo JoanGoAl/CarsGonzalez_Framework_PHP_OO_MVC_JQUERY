@@ -26,7 +26,10 @@ function load_title(text, div) {
 }
 
 function load_brands() {
-    ajaxPromise("GET", "modules/home/ctrl/controller_home.php?op=list_brands", "json")
+
+    url = friendlyURL("?page=home&op=list_brands")
+
+    ajaxPromise("GET", url, "json")
         .then(function(json) {
 
             load_title('Brands', 'load_brands')
@@ -92,14 +95,15 @@ function load_brands() {
                 // And if we need scrollbar
             });
         }).catch(function() {
-            console.log(error)
+            console.log("Error list_brands")
         })
 
 }
 
 function load_categories() {
+    url = friendlyURL("?page=home&op=list_categories")
 
-    ajaxPromise("GET", "modules/home/ctrl/controller_home.php?op=list_categories", "json")
+    ajaxPromise("GET", url, "json")
         .then(function(json) {
 
             load_title('Categories', 'load_categories')
@@ -177,7 +181,10 @@ function load_categories() {
 }
 
 function load_bodyworks() {
-    ajaxPromise("GET", "modules/home/ctrl/controller_home.php?op=list_bodyworks", "json")
+
+    url = friendlyURL("?page=home&op=list_bodywork")
+
+    ajaxPromise("GET", url, "json")
         .then(function(json) {
 
             load_title('Bodyworks', 'load_bodyworks')
@@ -300,11 +307,11 @@ function redirect() {
 
 function load_all() {
     load_brands();
-    load_categories();
     load_bodyworks();
+    load_categories();
 }
 
 $(document).ready(function() {
     load_all();
-    redirect()
+    // redirect()
 })

@@ -1,5 +1,6 @@
+Options +FollowSymLinks
 RewriteEngine on
-RewriteBase /CarsGonzalez_Framework_PHP_OO_MVC_JQUERY/
+RewriteBase /CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

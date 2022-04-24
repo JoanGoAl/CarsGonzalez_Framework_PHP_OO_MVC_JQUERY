@@ -5,19 +5,15 @@
         <uri>view</uri>
     </function>
     <function>
-        <name>carousel</name>
-        <uri>carousel</uri>
+        <name>list_brands</name>
+        <uri>list_brands</uri>
     </function>
     <function>
-        <name>categoria</name>
-        <uri>categoria</uri>
+        <name>list_categories</name>
+        <uri>list_categories</uri>
     </function>
     <function>
-        <name>brands</name>
-        <uri>brands</uri>
-    </function>
-    <function>
-        <name>load_more</name>
-        <uri>load_more</uri>
+        <name>list_bodywork</name>
+        <uri>list_bodywork</uri>
     </function>
 </functions>

@@ -16,21 +16,33 @@
 			return self::$_instance;
 		}
 
-		public function get_carousel_BLL() {
-			return $this -> dao -> select_data_carousel($this->db);
+		public function get_brands_BLL() {
+			return $this -> dao -> select_data_brands($this -> db);
 		}
 
-		public function get_categoria_BLL() {
-			return $this -> dao -> select_data_categoria($this->db);
+		public function get_categories_BLL() {
+			return $this -> dao -> select_data_categories($this -> db);
 		}
 
-		public function get_brands_BLL($args) {
-			return $this -> dao -> select_data_brands($this->db, $args[0], $args[1]);
+		public function get_bodywork_BLL() {
+			return $this -> dao -> select_data_bodywork($this -> db);
 		}
 
-		public function get_load_more_BLL() {
-			return $this -> dao -> select_load_more($this->db);
-		}
+		// public function get_carousel_BLL() {
+		// 	return $this -> dao -> select_data_carousel($this->db);
+		// }
+
+		// public function get_categoria_BLL() {
+		// 	return $this -> dao -> select_data_categoria($this->db);
+		// }
+
+		// public function get_brands_BLL($args) {
+		// 	return $this -> dao -> select_data_brands($this->db, $args[0], $args[1]);
+		// }
+
+		// public function get_load_more_BLL() {
+		// 	return $this -> dao -> select_load_more($this->db);
+		// }
 
 	}
 ?>

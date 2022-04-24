@@ -17,15 +17,14 @@
                 require_once ($view);
                 require_once (VIEW_PATH_INC . 'footer.html');
             }else {
-                
-                // self::load_error();
+                self::load_error();
             }
         }
 
         public static function load_model($model, $function = null, $args = null) {
             $dir = explode('_', $model);
-            // $path = constant('MODEL_' . strtoupper($dir[0])) .  $model . '.class.singleton.php';
-            $path = 'module/home/model/model/home_model.class.signleton.php';
+            $path = constant('MODEL_' . strtoupper($dir[0])) .  $model . '.class.singleton.php';
+            // $path = '/var/www/html/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY/module/home/model/model/home_model.class.signleton.php';
             if (file_exists($path)) {
                 require_once ($path);
                 if (method_exists($model, $function)) {
