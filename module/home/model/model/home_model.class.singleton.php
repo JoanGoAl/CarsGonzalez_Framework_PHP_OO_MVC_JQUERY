@@ -26,21 +26,5 @@
             return $this -> bll -> get_bodywork_BLL();
         }
 
-        // public function get_carousel() {
-        //     return $this -> bll -> get_carousel_BLL();
-        // }
-
-        // public function get_categoria() {
-        //     return $this -> bll -> get_categoria_BLL();
-        // }
-
-        // public function get_brands($args) {
-        //     return $this -> bll -> get_brands_BLL($args);
-        // }
-
-        // public function get_load_more() {
-        //     return $this -> bll -> get_load_more_BLL();
-        // }
-
     }
 ?>
