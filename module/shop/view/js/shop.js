@@ -61,14 +61,13 @@ function load_details(id) {
             let newnum = numvisited + 1
 
 
-            // url = friendlyURL("?page=shop&op=car_visited")
-            // ajaxPromise("POST", url, "json", {idcar : id, num : newnum})
-            //     .then(function(json) {
-            //         // console.log(json);
+            url = friendlyURL("?page=shop&op=car_visited")
+            ajaxPromise("POST", url, "json", {idcar : id, num : newnum})
+                .then(function() {
 
-            //     }).catch(function() {
-            //         console.log('error update visited')
-            //     })
+                }).catch(function() {
+                    console.log('error update visited')
+                })
 
             load_location(json[0], 1)
 
@@ -195,14 +194,14 @@ function load_details(id) {
             //Coches relacionados
             // console.log(json[0].id_category + " " + json[0].id_type + " " + json[0].id_bodywork);
 
-            url = friendlyURL("?page=shop&op=related_cars")
-
+            
             let data = { 
-                cat : json[0].id_category, 
-                type : json[0].id_type, 
-                idcar : json[0].id_car 
+                cat : json[0][0].id_category, 
+                type : json[0][0].id_type, 
+                idcar : json[0][0].id_car 
             }
-
+            
+            url = friendlyURL("?page=shop&op=related_cars")
             ajaxPromise("POST", url, "json", data)
                 .then(function(jsonCars) {
 
@@ -976,14 +975,11 @@ function load_orderBy() {
 
 function button_pagination(jsonnumofcars) {
 
-    // Fer per a poder tirar quants cotxes cabran en cada pagina
-
-
     // Paginacion para cambiar la cantidad de coches que queremos por pagina (recordar cambair el limit en el DAO)
     let paginacion = 6
 
     // Esto es el numero total de paginas divido el numero total de coches entre la paginacion (trucar para arriba para evitar errores)
-    numofpages = Math.ceil(jsonnumofcars.numofcars / paginacion)
+    numofpages = Math.ceil(jsonnumofcars[0].numofcars / paginacion)
 
     let contText = document.createElement('p')
 
@@ -1047,4 +1043,3 @@ $(document).ready(function() {
     load_page()
 
 })
-

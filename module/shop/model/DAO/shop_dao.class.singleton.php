@@ -171,8 +171,7 @@
             $sql = "UPDATE car
                 SET visited = ". $num ."
                 WHERE id_car = " . $idcar;
-            $stmt = $db -> ejecutar($sql);
-            return $db -> listar($stmt);
+            $db -> ejecutar($sql);
         }
 
         public function select_data_related_cars($db, $cat, $type, $idcar) {
