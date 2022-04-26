@@ -301,7 +301,7 @@ function redirect() {
 
         console.log(localStorage.getItem('filters'));
         localStorage.setItem('pagination', 0)
-        window.location.href = 'index.php?modules=controller_shop' //fer el window location al shop, list
+        window.location.href = 'shop' //fer el window location al shop, list
     });
 }
 
@@ -313,5 +313,5 @@ function load_all() {
 
 $(document).ready(function() {
     load_all();
-    // redirect()
+    redirect()
 })
