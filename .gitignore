@@ -1,2 +1,3 @@
 /model/db.ini
 /utils/jwt.ini
+/utils/phpMailer.ini

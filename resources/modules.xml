@@ -13,12 +13,12 @@
         <uri>search</uri>
     </module>
     <module>
-        <name>crud</name>
-        <uri>crud</uri>
-    </module>
-    <module>
         <name>contact</name>
         <uri>contact</uri>
+    </module>
+    <module>
+        <name>crud</name>
+        <uri>crud</uri>
     </module>
     <module>
         <name>cart</name>
