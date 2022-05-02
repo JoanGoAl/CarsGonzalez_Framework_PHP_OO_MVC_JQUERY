@@ -6,9 +6,9 @@
         }
 
         function sendinfo() {
-
-            $check = mail::contactMail($_POST['name'], $_POST['email'], $_POST['message']);
-            echo json_encode($check);
+            include "utils/mail.inc.php";
+            // echo json_encode(Mail::contactMail("Moises", "gfmois@gmail.com", "Primer mensaje de prueba"));
+            echo json_encode(Mail::contactMail($_POST['name'], $_POST['email'], $_POST['message']));
         }
 
     }

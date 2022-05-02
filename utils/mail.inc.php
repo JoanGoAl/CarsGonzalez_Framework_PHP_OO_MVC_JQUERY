@@ -12,32 +12,35 @@
 
             $mail = new PHPMailer(true);
             $smtpInfo = parse_ini_file('phpMailer.ini', true);
+
             
             try {
                 // Server Site
                 $mail->isSMTP();
-                $mail->SMTPDebug    = 2;
+                // $mail->SMTPDebug    = 2;
                 $mail->SMTPAuth     = true;
                 $mail->SMTPSecure   = 'tls';
                 $mail->Host         = $smtpInfo["SMTP"]["host"];
                 $mail->Port         = 587;
                 $mail->Username     = $smtpInfo["SMTP"]["username"];
                 $mail->Password     = $smtpInfo["SMTP"]["passwd"];
-        
+                
                 // Recipient
                 $mail->setFrom($emailContacto, $nombre);
                 $mail->addAddress($smtpInfo["SMTP"]["toAddress"], 'Joan González');
                 $mail->addReplyTo($emailContacto);
                 
+                
                 // Content
                 $mail->isHTML(true);
                 $mail->Subject      = "Contact US: " . $nombre;
                 $mail->Body         = $message;
-        
+                
                 $mail->send();
-                echo "Mensaje enviado";
+
+                return "Mensaje enviado";
             } catch (Exception $e) {
-                echo "Message could not be sent. Mail error: {$mail->ErrorInfo}";
+                return "Message could not be sent. Mail error: {$mail->ErrorInfo}";
             }
         
         }
@@ -48,5 +51,5 @@
 
     }
 
-    // Mail::contactMail("Moises", "gfmois@gmail.com", "Primer mensaje de prueba");
-    ?>
+    Mail::contactMail("Moises", "gfmois@gmail.com", "Primer mensaje de prueba");
+?>

@@ -58,6 +58,7 @@
     define('JS_VIEW_SEARCH', SITE_PATH . 'module/search/view/js/');
     
     //MODEL_CONTACT
+    define('UTILS_CONTACT', SITE_ROOT . 'module/contact/utils/');
     define('MODEL_CONTACT', SITE_ROOT . 'module/contact/model/model/');
     define('JS_VIEW_CONTACT', SITE_PATH . 'module/contact/view/js/');
     define ('VIEW_PATH_CONTACT', SITE_ROOT . 'module/contact/view/');

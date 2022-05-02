@@ -873,6 +873,7 @@ function load_location(jsonlocation, pos) {
                         '<p>' + value.name_brand + ' ' + value.name_model + '</p><img class="redirectPopup" src="' + value.photo_car + '" alt="">'
                         // popup.appendChild(containerAll)
                     )
+                    
 
                 // $(popup).on('click', function() {
                 //     console.log('hola');
@@ -885,11 +886,21 @@ function load_location(jsonlocation, pos) {
                     .setPopup(popup)
                     .addTo(map);
 
-                $(document).on('click', '.mapboxgl-popup-content', function() {
-                    // load_details(value.id_car)
-                });
-            });
-
+                    // $(".mapboxgl-popup-content").on('click', function() {
+                        //     console.log('Holaa');
+                        //     // load_details(value.id_car)
+                        // });
+                    });
+                    
+                    setTimeout(()=>{
+                
+                        $(".redirectPopup").click(function (e) { 
+                            console.log('Holaa');
+                            
+                        });
+                
+                    },1000)
+                    
             break;
 
         case 1:
@@ -912,7 +923,7 @@ function load_location(jsonlocation, pos) {
             break;
     }
 
-
+    
 
 
 }
