@@ -52,9 +52,7 @@ function load_swiper() {
 function load_details(id) {
 
     url = friendlyURL("?page=shop&op=details_car")
-
-
-    ajaxPromise("POST", url , "json", {idcar : id})
+    ajaxPromise("POST", url, "json", { idcar: id })
         .then(function(json) {
 
             let numvisited = parseInt(json[0][0].visited)
@@ -62,7 +60,7 @@ function load_details(id) {
 
 
             url = friendlyURL("?page=shop&op=car_visited")
-            ajaxPromise("POST", url, "json", {idcar : id, num : newnum})
+            ajaxPromise("POST", url, "json", { idcar: id, num: newnum })
                 .then(function() {
 
                 }).catch(function() {
@@ -194,13 +192,13 @@ function load_details(id) {
             //Coches relacionados
             // console.log(json[0].id_category + " " + json[0].id_type + " " + json[0].id_bodywork);
 
-            
-            let data = { 
-                cat : json[0][0].id_category, 
-                type : json[0][0].id_type, 
-                idcar : json[0][0].id_car 
+
+            let data = {
+                cat: json[0][0].id_category,
+                type: json[0][0].id_type,
+                idcar: json[0][0].id_car
             }
-            
+
             url = friendlyURL("?page=shop&op=related_cars")
             ajaxPromise("POST", url, "json", data)
                 .then(function(jsonCars) {
@@ -793,9 +791,9 @@ function ajaxForSearch(pagination) {
     }
 
     let totalData = {
-        data : data,
-        pos : pos,
-        pagination : pagination
+        data: data,
+        pos: pos,
+        pagination: pagination
     }
 
     url = friendlyURL("?page=shop&op=filters")
@@ -873,7 +871,7 @@ function load_location(jsonlocation, pos) {
                         '<p>' + value.name_brand + ' ' + value.name_model + '</p><img class="redirectPopup" src="' + value.photo_car + '" alt="">'
                         // popup.appendChild(containerAll)
                     )
-                    
+
 
                 // $(popup).on('click', function() {
                 //     console.log('hola');
@@ -886,21 +884,21 @@ function load_location(jsonlocation, pos) {
                     .setPopup(popup)
                     .addTo(map);
 
-                    // $(".mapboxgl-popup-content").on('click', function() {
-                        //     console.log('Holaa');
-                        //     // load_details(value.id_car)
-                        // });
-                    });
-                    
-                    setTimeout(()=>{
-                
-                        $(".redirectPopup").click(function (e) { 
-                            console.log('Holaa');
-                            
-                        });
-                
-                    },1000)
-                    
+                // $(".mapboxgl-popup-content").on('click', function() {
+                //     console.log('Holaa');
+                //     // load_details(value.id_car)
+                // });
+            });
+
+            setTimeout(() => {
+
+                $(".redirectPopup").click(function(e) {
+                    console.log('Holaa');
+
+                });
+
+            }, 1000)
+
             break;
 
         case 1:
@@ -923,7 +921,7 @@ function load_location(jsonlocation, pos) {
             break;
     }
 
-    
+
 
 
 }

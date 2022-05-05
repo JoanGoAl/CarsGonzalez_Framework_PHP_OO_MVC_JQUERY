@@ -33,7 +33,9 @@
                         return call_user_func(array($obj, $function), $args);
                     }
                     return call_user_func(array($obj, $function));
-                }
+                } 
+            }else {
+                return "hola";
             }
             throw new Exception();
         }

@@ -40,7 +40,7 @@ function load_menu() {
         let alogin = document.createElement('a');
 
         alogin.appendChild(document.createTextNode('Login'));
-        alogin.href = 'index.php?modules=login_register';
+        alogin.href = 'login';
 
         document.getElementById('menu-area-main').appendChild(alogin);
     }
@@ -57,7 +57,7 @@ function logout() {
 
                 if (res == '_logout') {
                     localStorage.removeItem('token');
-                    window.location.href = "index.php?modules=controller_home";
+                    window.location.href = "home";
                 }
 
             }).catch(function() {
