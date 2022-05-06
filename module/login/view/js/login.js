@@ -241,16 +241,17 @@ function register() {
                     ajaxPromise("POST", url, "json", data)
                         .then((res) => {
                             toastr.success(res + " te has registrado con exito");
-                            // window.location.href = "index.php?modules=controller_home"
-                            // ajaxPromise("POST", "modules/login/ctrl/controller_login.php?op=login", "json", data)
-                            //     .then((res) => {
 
-                            //         localStorage.setItem('token', res);
-                            //         window.location.href = "index.php?modules=controller_home"
+                            url = friendlyURL("?page=login&op=login")
+                            ajaxPromise("POST", url, "json", { name: res })
+                                .then((token) => {
 
-                            //     }).catch(function() {
-                            //         console.log('Error login')
-                            //     })
+                                    localStorage.setItem('token', token);
+                                    // window.location.href = "index.php?modules=controller_home"
+
+                                }).catch(function() {
+                                    console.log('Error login')
+                                })
                         }).catch(function() {
                             console.log('Error insert user')
                         })
@@ -303,7 +304,8 @@ function login() {
 
     if (validate_login() != 0) {
 
-        ajaxPromise("POST", "modules/login/ctrl/controller_login.php?op=validate-login", "json", data)
+        url = friendlyURL("?page=login&op=validate_login")
+        ajaxPromise("POST", url, "json", data)
             .then((res) => {
 
                 console.log(res);
@@ -316,6 +318,11 @@ function login() {
                     case 'passwd_not_match':
                         document.getElementById('error_passwd_login').innerHTML = 'Contraseña incorrecta';
                         break;
+
+                    case 'user_not_verify':
+                        toastr.warning('El usuario no esta verificado compruebe su correo');
+
+                        break;
                     default:
                         document.getElementById('error_name_login').innerHTML = '';
                         document.getElementById('error_passwd_login').innerHTML = '';
@@ -323,11 +330,12 @@ function login() {
                 }
 
                 if (res == 'all_ok') {
-                    ajaxPromise("POST", "modules/login/ctrl/controller_login.php?op=login", "json", data)
+                    url = friendlyURL("?page=login&op=login")
+                    ajaxPromise("POST", url, "json", data)
                         .then((res) => {
 
                             localStorage.setItem('token', res);
-                            window.location.href = "index.php?modules=controller_home"
+                            window.location.href = "home"
 
                         }).catch(function() {
                             console.log('Error login')

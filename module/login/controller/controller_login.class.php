@@ -14,19 +14,19 @@
         }
         
         function validate_login() {
-            echo json_encode(common::load_model('login_model', 'validate_login'));
+            echo json_encode(common::load_model('login_model', 'validate_login', $_POST));
         }
 
         function login() {
-            echo json_encode(common::load_model('login_model', 'get_login'));
+            echo json_encode(common::load_model('login_model', 'login', $_POST['name']));
+        }
+        
+        function data_user() {
+            echo json_encode(common::load_model('login_model', 'get_data_user', $_POST['token']));
         }
 
         function logout() {
             echo json_encode(common::load_model('login_model', 'logout'));
-        }
-
-        function data_user() {
-            echo json_encode(common::load_model('login_model', 'get_data_user'));
         }
 
         function controll_user() {

@@ -23,6 +23,22 @@
             return $this -> bll -> register_BLL($data);
         }
 
+        public function login($name) {
+            return $this -> bll -> login_BLL($name);
+        }
+
+        public function get_data_user($token) {
+            return $this -> bll -> data_user_BLL($token);
+        }
+
+        public function logout() {
+            return $this -> bll -> logout_BLL();
+        }
+
+        public function validate_login($data) {
+            return $this -> bll -> validate_login_BLL($data);
+        }
+
     }
 
 ?>

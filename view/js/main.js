@@ -2,7 +2,10 @@ function load_menu() {
 
     if (localStorage.getItem('token')) {
 
-        ajaxPromise("POST", "modules/login/ctrl/controller_login.php?op=data_user", "json")
+        let token = localStorage.getItem('token')
+
+        url = friendlyURL("?page=login&op=data_user")
+        ajaxPromise("POST", url, "json", { token: token })
             .then((res) => {
 
                 let imgavatar = document.getElementById('menu-area-main')
@@ -51,7 +54,8 @@ function logout() {
 
     $('#butt-logout').on('click', function() {
 
-        ajaxPromise("GET", "modules/login/ctrl/controller_login.php?op=logout", "json")
+        url = friendlyURL("?page=login&op=logout")
+        ajaxPromise("POST", url, "json")
             .then((res) => {
                 console.log(res);
 

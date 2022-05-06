@@ -58,6 +58,43 @@
             $db -> ejecutar($sql);
             return $data['name'];
         }
+
+        public function select_login($db, $name) {
+            $sql = "SELECT * FROM user u
+                WHERE u.name_user = '$name'";
+    
+            $stmt = $db -> ejecutar($sql);
+            return $db -> listar($stmt);
+        }
+
+        public function select_data_user($db, $json) {
+            $sql = "SELECT u.name_user, u.email_user, u.avatar_user, u.type_user FROM user u
+                WHERE u.name_user LIKE '". $json['name'] ."'";
+
+            $stmt = $db -> ejecutar($sql);
+            return $db -> listar($stmt);
+        }
+
+        public function do_logout() {
+            session_unset();
+            return '_logout';
+        }
+
+        public function select_validate_login($db, $data) {
+            $check_name = $this -> search_name($db, $data['name']);
+
+            if ($check_name == null) {
+                return "name_not_exist";
+            } else if (password_verify($data['passwd'],$check_name[0]['passwd_user']) && $check_name[0]['status_user'] == 'true') {
+                return "all_ok";
+            } else if ($check_name[0]['status_user'] == 'false') {
+                return 'user_not_verify';
+            } else if ($check_name) {
+                return "passwd_not_match";
+            } else {  
+                return "passwd_not_match"; 
+            }
+        }
     }
 
 ?>

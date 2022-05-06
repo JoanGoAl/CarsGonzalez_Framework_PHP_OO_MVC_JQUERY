@@ -12,4 +12,20 @@
         <name>register</name>
         <uri>register</uri>
     </function>
+    <function>
+        <name>login</name>
+        <uri>login</uri>
+    </function>
+    <function>
+        <name>data_user</name>
+        <uri>data_user</uri>
+    </function>
+    <function>
+        <name>logout</name>
+        <uri>logout</uri>
+    </function>
+    <function>
+        <name>validate_login</name>
+        <uri>validate_login</uri>
+    </function>
 </functions>
