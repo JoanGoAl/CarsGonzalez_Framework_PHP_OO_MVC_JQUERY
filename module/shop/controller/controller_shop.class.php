@@ -33,14 +33,12 @@
             echo json_encode(common::load_model('shop_model', 'get_related_cars', $_POST));
         }
 
-        // Vore com pasar el token
-
         function click_likes() {
-            echo json_encode(common::load_model('shop_model', 'get_click_likes'));
+            echo json_encode(common::load_model('shop_model', 'set_click_likes', $_POST));
         }
 
         function user_likes() {
-            echo json_encode(common::load_model('shop_model', 'get_user_likes'));
+            echo json_encode(common::load_model('shop_model', 'get_user_likes', $_POST['token']));
         }
 
     }

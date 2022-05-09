@@ -44,12 +44,14 @@
 			return $this -> dao -> select_data_related_cars($this -> db, $args["cat"], $args["type"], $args["idcar"]);
 		}
 
-		public function get_click_likes_BLL() {
-			return $this -> dao -> select_data_click_likes($this -> db);
+		public function set_click_likes_BLL($car, $token) {
+			$json = json_decode(jwt_process::decode($token), TRUE);
+			return $this -> dao -> set_data_click_likes($this -> db, $car, $json['name']);
 		}
 
-		public function get_user_likes_BLL() {
-			return $this -> dao -> select_data_user_likes($this -> db);
+		public function get_user_likes_BLL($token) {
+			$json = json_decode(jwt_process::decode($token), TRUE);
+			return $this -> dao -> select_data_user_likes($this -> db, $json['name']);
 		}
 
 	}

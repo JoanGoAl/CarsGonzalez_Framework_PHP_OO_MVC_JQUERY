@@ -184,18 +184,51 @@
             return $db -> listar($stmt);
         }
 
-        // Falta saber como hacer el token
+        public function set_data_click_likes($db, $car, $name) {
+            $sql = "SELECT u.id_user FROM user u
+                WHERE u.name_user LIKE '". $name ."'";
 
-        public function select_data_click_likes($db) {
-            $sql = "SELECT * FROM category";
-            $stmt = $db -> ejecutar($sql);
-            return $db -> listar($stmt);
+            $user = $db -> listar($db -> ejecutar($sql));
+
+            $user = $user[0]['id_user'];
+            $idcar = $car['id_car'];
+
+            $sql = "SELECT `id_user`, `id_car` FROM `likes` WHERE `id_user` = $user AND `id_car` = $idcar";
+
+            $comp = $db -> listar($db -> ejecutar($sql));
+
+            if (empty($comp)) {
+            
+                $sql = "INSERT INTO `likes`(`id_user`, `id_car`) VALUES ($user, ". $idcar .")";
+                $db -> ejecutar($sql);
+    
+                return 'insertado';
+    
+            } else {
+    
+                $sql = "DELETE FROM `likes` WHERE `id_user` = $user AND `id_car` = $idcar";
+                $db -> ejecutar($sql);
+
+                return 'eliminado';
+    
+            }
+
         }
 
-        public function select_data_user_likes($db) {
-            $sql = "SELECT * FROM bodywork";
-            $stmt = $db -> ejecutar($sql);
-            return $db -> listar($stmt);
+        public function select_data_user_likes($db, $name) {
+            $sql = "SELECT u.id_user FROM user u
+                WHERE u.name_user LIKE '". $name ."'";
+            $user = $db -> listar($db -> ejecutar($sql));
+            $user = $user[0]['id_user'];
+
+            $sql = "SELECT * FROM `likes` WHERE `id_user` = $user";
+            $res = $db -> listar($db -> ejecutar($sql));
+
+            if (!empty($res)) {
+                return $res;
+            }
+
+            return null;
         }
 
     }

@@ -43,12 +43,12 @@
             return $this -> bll -> get_related_cars_BLL($args);
         }
 
-        public function get_click_likes() {
-            return $this -> bll -> get_click_likes_BLL();
+        public function set_click_likes($data) {
+            return $this -> bll -> set_click_likes_BLL($data['car'], $data['token']);
         }
 
-        public function get_user_likes() {
-            return $this -> bll -> get_user_likes_BLL();
+        public function get_user_likes($token) {
+            return $this -> bll -> get_user_likes_BLL($token);
         }
     }
 

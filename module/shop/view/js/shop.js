@@ -377,11 +377,16 @@ function load_cars(jsonCars) {
                     positionlike.className = 'no-like'
                 }
 
+                data = {
+                    token: localStorage.getItem("token"),
+                    car: value
+                }
+
                 url = friendlyURL("?page=shop&op=click_likes")
-                ajaxPromise("POST", url, "json", value)
+                ajaxPromise("POST", url, "json", data)
                     .then(function(res) {
 
-                        console.log(res);
+                        // console.log(res);
 
                     }).catch(function() {
                         console.log('Error likes')
@@ -396,7 +401,6 @@ function load_cars(jsonCars) {
             });
         }
 
-        // Fer que el on click del like siga priopritari a este
         $(containerDet).on('click', function() {
 
             let itemsOflist = document.getElementById('list_shop')
@@ -409,20 +413,22 @@ function load_cars(jsonCars) {
 
     });
 
-    url = friendlyURL("?page=shop&op=user_likes")
-    ajaxPromise("POST", url, "json")
-        .then(function(res) {
+    if (localStorage.getItem('token')) {
 
-            if (res != null) {
-                $.each(res, function(index, valuelikes) {
+        url = friendlyURL("?page=shop&op=user_likes")
+        ajaxPromise("POST", url, "json", { token: localStorage.getItem('token') })
+            .then(function(res) {
+                if (res != null) {
+                    $.each(res, function(index, valuelikes) {
 
-                    $('#' + valuelikes.id_car).find('#like-box').attr('class', 'like');
+                        $('#' + valuelikes.id_car).find('#like-box').attr('class', 'like');
 
-                });
-            }
-        }).catch(function() {
-            console.log('Error likes user')
-        })
+                    });
+                }
+            }).catch(function() {
+                console.log('Error likes user')
+            })
+    }
 
     let containerpagbutt = document.createElement('div')
     let buttonprev = document.createElement('div')
