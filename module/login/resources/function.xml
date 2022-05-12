@@ -28,4 +28,8 @@
         <name>validate_login</name>
         <uri>validate_login</uri>
     </function>
+    <function>
+        <name>send_verification_email</name>
+        <uri>send_verification_email</uri>
+    </function>
 </functions>

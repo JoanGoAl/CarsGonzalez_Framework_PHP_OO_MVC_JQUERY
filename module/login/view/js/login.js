@@ -14,6 +14,14 @@ function load_login() {
     let inputpasswd_login = document.createElement('input')
     let span_passwd_login = document.createElement('span')
 
+    let div_socialLogin = document.createElement('div')
+    div_socialLogin.className = 'div-socialLogin'
+
+    let git_Icon = document.createElement('i')
+    git_Icon.className = "fa fa-github"
+    let google_Icon = document.createElement('i')
+    google_Icon.className = "fa fa-google-plus"
+
     let div_scroll = document.createElement('div')
 
     let inputname_signup = document.createElement('input')
@@ -138,6 +146,9 @@ function load_login() {
     form_login.appendChild(inputpasswd_login)
     form_login.appendChild(span_passwd_login)
     form_login.appendChild(loginbutton)
+    form_login.appendChild(div_socialLogin)
+    div_socialLogin.appendChild(git_Icon)
+    div_socialLogin.appendChild(google_Icon)
 
     main_login.appendChild(signup)
     signup.appendChild(form_signup)

@@ -117,3 +117,33 @@ button:hover {
 .fa-instagram {
     margin: 10px;
 }
+
+.div-socialLogin {
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.div-socialLogin>.fa-github {
+    margin-left: auto;
+    color: red;
+    background-color: white;
+    padding: 2.5px 3.1px;
+    border-radius: 20px;
+    font-size: 35px;
+}
+
+.div-socialLogin>.fa-google-plus {
+    margin-right: auto;
+    color: red;
+    background-color: white;
+    padding: 7.5px 4.5px;
+    border-radius: 20px;
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.div-socialLogin>i:hover {
+    background-color: rgb(176, 176, 176);
+}

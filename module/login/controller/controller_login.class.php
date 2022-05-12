@@ -36,5 +36,12 @@
         function activity() {
             echo json_encode(common::load_model('login_model', 'activity'));
         }
+
+        function send_verification_email() {
+            // echo json_encode('Holaaa');
+            include "utils/mail.inc.php";
+            echo json_encode(Mail::verify('joan', 'joangonzalezalbert@gmail.com'));
+            // echo json_encode(Mail::verify($_POST['name'], $_POST['email']));
+        }
     }
 ?>
