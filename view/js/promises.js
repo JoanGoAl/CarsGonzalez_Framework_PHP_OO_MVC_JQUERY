@@ -31,5 +31,5 @@ function friendlyURL(url) {
             link += "/" + aux[1];
         }
     }
-    return "http://192.168.1.160/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY" + link;
+    return "http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY" + link;
 }

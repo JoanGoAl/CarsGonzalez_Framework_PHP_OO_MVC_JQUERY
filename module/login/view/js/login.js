@@ -19,8 +19,10 @@ function load_login() {
 
     let git_Icon = document.createElement('i')
     git_Icon.className = "fa fa-github"
+    git_Icon.id = 'git_login'
     let google_Icon = document.createElement('i')
     google_Icon.className = "fa fa-google-plus"
+    google_Icon.id = 'google_login'
 
     let div_scroll = document.createElement('div')
 
@@ -251,6 +253,7 @@ function register() {
                     url = friendlyURL("?page=login&op=register")
                     ajaxPromise("POST", url, "json", data)
                         .then((res) => {
+
                             toastr.success(res + " te has registrado con exito");
 
                             url = friendlyURL("?page=login&op=login")
@@ -258,7 +261,7 @@ function register() {
                                 .then((token) => {
 
                                     localStorage.setItem('token', token);
-                                    // window.location.href = "index.php?modules=controller_home"
+                                    window.location.href = "index.php?modules=controller_home"
 
                                 }).catch(function() {
                                     console.log('Error login')
@@ -281,6 +284,19 @@ function button_login() {
     $('#login-butt').on('click', function() {
         login();
     });
+
+    $('#google_login').on('click', function() {
+        webAuth.authorize({
+            connection: 'google-oauth2'
+        })
+    })
+
+    $('#git_login').on('click', function() {
+        webAuth.authorize({
+            connection: 'github'
+        })
+    })
+
 
 }
 
@@ -361,8 +377,66 @@ function login() {
     }
 }
 
+let webAuth = new auth0.WebAuth({
+    domain: 'joangoal.eu.auth0.com',
+    clientID: '4R7dzhd5tvOugxpujfAriHYNOirVjtpI',
+    redirectUri: 'http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY/login',
+    // redirectUri: 'http://192.168.1.160/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY/login',
+    responseType: 'token id_token',
+    scope: 'openid profile email',
+    leeway: 60
+})
+
+function setSessionExpiration(authResult) {
+    let expires_at = JSON.stringify(
+        authResult.expiresIn * 1000 + new Date().getTime()
+    );
+
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expires_at);
+}
+
+function socialLogin() {
+    webAuth.parseHash((error, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+            window.location.hash = '';
+            setSessionExpiration(authResult)
+
+            let user = {
+                idUser: authResult.idTokenPayload.sub.split('|')[1],
+                name: authResult.idTokenPayload.nickname,
+                email: authResult.idTokenPayload.email
+            }
+
+            url = friendlyURL("?page=login&op=register")
+            ajaxPromise("POST", url, "json", user)
+                .then((res) => {
+
+                    url = friendlyURL("?page=login&op=login")
+                    ajaxPromise("POST", url, "json", user)
+                        .then((res) => {
+
+                            localStorage.setItem('token', res);
+                            window.location.href = "home"
+
+                        }).catch(function() {
+                            console.log('Error login')
+                        })
+
+                }).catch(function() {
+                    console.log('Error insert user')
+                })
+        } else if (error) {
+            console.log(error);
+        }
+    })
+}
+
 $(document).ready(function() {
     load_login();
     button_register();
     button_login();
+
+    socialLogin();
 });
