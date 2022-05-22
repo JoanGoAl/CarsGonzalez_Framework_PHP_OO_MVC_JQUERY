@@ -940,6 +940,10 @@ function highlights() {
     $('#modelo option[value=' + values.id_models + ']').attr('selected', true)
     $('#color option[value=' + values.color + ']').attr('selected', true)
 
+    let orderBy = JSON.parse(localStorage.getItem('orderBy'))
+
+    $('#orderBy option[value=' + orderBy + ']').attr('selected', true)
+
 }
 
 function load_orderBy() {
@@ -972,17 +976,15 @@ function load_orderBy() {
     select.appendChild(option2)
 
     let order = 'def'
-        // $(select).on('change', function() {
-        //     order = select.value
-        //     localStorage.setItem('orderBy', JSON.stringify(order))
-        //     ajaxForSearch(0)
-        //     document.getElementById('brand-bg').remove()
-        //     document.getElementById('location').remove()
 
-    // });
-
-
-    // localStorage.setItem('order', order)
+    $(select).on('change', function() {
+        order = select.value
+        localStorage.setItem('orderBy', JSON.stringify(order))
+        ajaxForSearch(0)
+        document.getElementById('brand-bg').remove()
+        document.getElementById('location').remove()
+        document.getElementById('containerpagbutt').remove()
+    });
 
 
 

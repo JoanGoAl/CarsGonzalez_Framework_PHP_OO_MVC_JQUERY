@@ -32,4 +32,5 @@ function friendlyURL(url) {
         }
     }
     return "http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY" + link;
+    // return "http://192.168.1.160/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_JQUERY" + link;
 }
